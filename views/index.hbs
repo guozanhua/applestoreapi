@@ -1,0 +1,555 @@
+<div class="jumbotron banner">
+    <div class="container text-center">
+        <h1>{{title}}</h1>
+        BETA <br><br>
+        <!-- Place this tag where you want the button to render. -->
+        <a class="github-button" href="https://github.com/yabesWirawan" data-style="mega" data-count-href="/yabesWirawan/followers" data-count-api="/users/yabesWirawan#followers" data-count-aria-label="# followers on GitHub" aria-label="Follow @yabesWirawan on GitHub">Follow</a> &nbsp;
+        <!-- Place this tag where you want the button to render. -->
+        <a class="github-button" href="https://github.com/yabesWirawan/gooplayapi" data-icon="octicon-star" data-style="mega" data-count-href="/yabesWirawan/gooplayapi/stargazers" data-count-api="/repos/yabesWirawan/gooplayapi#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star yabesWirawan/gooplayapi on GitHub">Star</a> &nbsp;
+        <!-- Place this tag where you want the button to render. -->
+        <a class="github-button" href="https://github.com/yabesWirawan/gooplayapi/issues" data-icon="octicon-issue-opened" data-style="mega" data-count-api="/repos/yabesWirawan/gooplayapi#open_issues_count" data-count-aria-label="# issues on GitHub" aria-label="Issue yabesWirawan/gooplayapigit  on GitHub">Issue</a>
+    </div>
+</div>
+
+
+<div class="container">
+
+    <div class="page-header">
+        <h1>Petunjuk Penggunaan</h1>
+    </div>
+
+    <section>
+        <p>Metode yang tersedia:</p>
+        <ul>
+            <li><p><a href="#app">app:</a> Mengambil data aplikasi secara utuh</p></li>
+            <li><p><a href="#list">list:</a> Mengambil daftar aplikasi dari suatu koleksi dalam Google Play</p></li>
+            <li><p><a href="#search">search:</a> Mengambil daftar aplikasi dari pencarian kata kunci</p></li>
+            <li><p><a href="#developer">developer:</a> Mendapatkan daftar aplikasi berdasarkan nama developer</p></li>
+            <li><p><a href="#suggest">suggest:</a> Mendapatkan 5 sugesti dari hasil pencarian kata kunci</p></li>
+            <li><p><a href="#reviews">reviews:</a> Mendapatkan data ulasan per aplikasi</p></li>
+            <li><p><a href="#similar">similar:</a> Mendapatkan data aplikasi terkait dari kata kunci yang diinput</p></li>
+            <li><p><a href="#permissions">permissions:</a> Mendapatkan permission per aplikasi yang dispesifikan</p></li>
+        </ul>
+    </section>
+
+    <br>
+
+    <div class="panel panel-default" id="app">
+        <div class="panel-heading">
+            <h3 class="panel-title">app</h3>
+        </div>
+        <div class="panel-body">
+            <section>
+                <p>Mengambil data aplikasi secara utuh. Opsi pencarian:</p>
+                <ul>
+                    <li><p>appId: ID aplikasi Google Play (parameter ?id= pada url).</p></li>
+                    <li><p>lang (opsional, 'en' adalah nilai default): dua huruf yang merepresentasikan kode bahasa.</p></li>
+                    <li><p>country (opsional, 'us' adalah nilai default): dua huruf yang merepresentasikan kode negara. Diperlukan untuk mengambil data aplikasi yang hanya terbatas pada beberapa negara tertentu.</p></li>
+                </ul>
+                <p>Contoh:</p>
+                <ul>
+                    <li><a href="{{baseurl}}app/com.naver.linewebtoon" target="_blank">Mengambil data aplikasi dengan memasukan parameter app id</a></li>
+                    <li><a href="{{baseurl}}app/com.naver.linewebtoon/id" target="_blank">Mengambil data aplikasi dengan memasukan parameter app id dan bahasa</a></li>
+                    <li><a href="{{baseurl}}app/klb.android.lovelive/jp/jp" target="_blank">Mengambil data aplikasi dengan memasukan parameter app id, bahasa, dan negara</a></li>
+                </ul>
+                <p>URL Parameter:</p>
+                <pre>GET: /app/:appId/:lang/:country</pre>
+            </section>
+        </div>
+    </div>
+
+    <div class="panel panel-default" id="list">
+        <div class="panel-heading">
+            <h3 class="panel-title">list</h3>
+        </div>
+        <div class="panel-body">
+            <section>
+                <p>Mengambil daftar aplikasi dari suatu koleksi dalam Google Play. Opsi pencarian:</p>
+                <ul>
+                    <li><p>collection (opsional, nilai defaultnya adalah collection.TOP_FREE): koleksi aplikasi Google Play yang akan discraping. Jenis-jenis koleksi dapat dilihat <a data-toggle="modal" href='#collection'>disini.</a></p></li>
+                    <li><p>category (opsional, nilai defaultnya adalah no category): filter aplikasi berdasarkan kategori. Jenis-jenis kategori dapat dilihat <a href="#category" data-toggle="modal">disini.</a></p></li>
+                    <li><p>age (optional, defaultnya adalah tidak menerapkan filter usia): filter aplikasi berdasarkan rentang usia (berlaku untuk kategori FAMILIY dan sub kategorinya saja). rentang usia yang dapat diterapkan adalah <a href="{{baseurl}}list/top_free/family/five_under" target="_blank">age.FIVE_UNDER</a>, <a href="{{baseurl}}list/top_free/family/six_eight" target="_blank">age.SIX_EIGHT</a>, dan <a href="{{baseurl}}list/top_free/family/nine_up" target="_blank">age.NINE_UP.</a></p></li>
+                    <li><p>lang (opsional, 'en' adalah nilai default): dua huruf yang merepresentasikan kode bahasa.</p></li>
+                    <li><p>country (opsional, 'us' adalah nilai default): dua huruf yang merepresentasikan kode negara. Diperlukan untuk mengambil data aplikasi yang hanya terbatas pada beberapa negara tertentu.</p></li>
+                    <li><p>num (optional, defaultnya adalah 60, maksimum 120): jumlah data aplikasi yang diambil.</p></li>
+                    <li><p>start (optional, defaultnya adalah 0, maksimum 500): angka indeks awal dari daftar koleksi aplikasi yang diambil</p></li>
+                </ul>
+                <p>Contoh:</p>
+                <ul>
+                    <li><a href="{{baseurl}}list/new_paid" target="_blank">Menampilkan daftar aplikasi berbayar terbaru tanpa menerapkan filter kategori dan usia</a></li>
+                    <li><a href="{{baseurl}}list/trending/game" target="_blank">Menampilkan daftar aplikasi game yang sedang naik daun</a></li>
+                    <li><a href="{{baseurl}}list/top_paid/family_education/nine_up" target="_blank">Menampilkan daftar aplikasi edukasi keluarga untuk anak usia 9 tahun keatas</a></li>
+                    <li><a href="{{baseurl}}list/top_free/no_category/no_age/en/us/100" target="_blank">Menampilkan 100 daftar aplikasi tidak berbayar terbaik</a></li>
+                    <li><a href="{{baseurl}}list/top_free/no_category/no_age/en/us/100/1" target="_blank">Menampilkan 100 daftar aplikasi tidak berbayar terbaik pada indeks kedua</a></li>
+                </ul>
+                <p>URL Parameter</p>
+                <pre>GET: /list/:collection/:category/:age/:lang/:country/:num/:start</pre>
+            </section>
+            
+            {{!--Collection Modal--}}
+            <div class="modal fade" id="collection">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">Collection</h4>
+                        </div>
+                        <div class="modal-body">
+                            
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Opsi</th>
+                                        <th>Deskripsi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><a href="{{baseurl}}list/top_free" target="_blank">TOP_FREE</a></td>
+                                        <td>Aplikasi tidak berbayar terpopuler</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="{{baseurl}}list/top_paid" target="_blank">TOP_PAID</a></td>
+                                        <td>Aplikasi berbayar terpopuler</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="{{baseurl}}list/new_free" target="_blank">NEW_FREE</a></td>
+                                        <td>Aplikasi tidak berbayar terbaru</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="{{baseurl}}list/new_paid" target="_blank">NEW_PAID</a></td>
+                                        <td>Aplikasi berbayar terbaru</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="{{baseurl}}list/grossing" target="_blank">GROSSING</a></td>
+                                        <td>Aplikasi dengan penjualan terbanyak</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="{{baseurl}}list/trending" target="_blank">TRENDING</a></td>
+                                        <td>Aplikasi dengan pengguna terbanyak dalam suatu periode</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default btn-block btn-lg" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {{!--Category Modal--}}
+            <div class="modal fade" id="category">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">Category</h4>
+                        </div>
+                        <div class="modal-body">
+                            
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Opsi</th>
+                                        <th>Deskripsi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><a href="{{baseurl}}list/top_free/android_wear" target="_blank">ANDROID_WEAR</a></td>
+                                        <td>Aplikasi untuk perangkat Android Wear</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="{{baseurl}}list/top_free/art_and_design" target="_blank">ART_AND_DESIGN</a></td>
+                                        <td>Aplikasi bertema desain dan seni</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="{{baseurl}}list/top_free/auto_and_vehicles" target="_blank">AUTO_AND_VEHICLES</a></td>
+                                        <td>Aplikasi bertema kendaraan</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="{{baseurl}}list/top_free/beauty" target="_blank">BEAUTY</a></td>
+                                        <td>Aplikasi bertema kecantikan</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="{{baseurl}}list/top_free/books_and_reference" target="_blank">BOOKS_AND_REFERENCE</a></td>
+                                        <td>Buku dan referensi digital</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="{{baseurl}}list/top_free/business" target="_blank">BUSINESS</a></td>
+                                        <td>Aplikasi bertema bisnis</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="{{baseurl}}list/top_free/comics" target="_blank">COMICS</a></td>
+                                        <td>Komik digital</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="{{baseurl}}list/top_free/dating" target="_blank">DATING</a></td>
+                                        <td>Aplikasi bertema dating</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="{{baseurl}}list/top_free/education" target="_blank">EDUCATION</a></td>
+                                        <td>Aplikasi bertema edukasi atau pendidikan</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="{{baseurl}}list/top_free/entertainment" target="_blank">ENTERTAINMENT</a></td>
+                                        <td>Aplikasi bertema hiburan</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="{{baseurl}}list/top_free/events" target="_blank">EVENTS</a></td>
+                                        <td>Aplikasi bertema kegiatan atau acara</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="{{baseurl}}list/top_free/finance" target="_blank">FINANCE</a></td>
+                                        <td>Aplikasi bertema keuangan</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="{{baseurl}}list/top_free/food_and_drink" target="_blank">FOOD_AND_DRINK</a></td>
+                                        <td>Aplikasi bertema makanan dan minuman</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="{{baseurl}}list/top_free/health_and_fitness" target="_blank">HEALTH_AND_FITNESS</a></td>
+                                        <td>Aplikasi bertema kesehatan dan kebugaran tubuh</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="{{baseurl}}list/top_free/house_and_home" target="_blank">HOUSE_AND_HOME</a></td>
+                                        <td>Aplikasi bertema rumah dan tempat tinggal</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="{{baseurl}}list/top_free/libraries_and_demo" target="_blank">LIBRARIES_AND_DEMO</a></td>
+                                        <td>Kumpulan library dan demo aplkasi</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="{{baseurl}}list/top_free/lifestyle" target="_blank">LIFESTYLE</a></td>
+                                        <td>Aplikasi seputar gaya hidup</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="{{baseurl}}list/top_free/maps_and_navigation" target="_blank">MAPS_AND_NAVIGATION</a></td>
+                                        <td>Aplikasi peta dan navigasi</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="{{baseurl}}list/top_free/medical" target="_blank">MEDICAL</a></td>
+                                        <td>Aplikasi seputar dunia kedokteran dan medis</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="{{baseurl}}list/top_free/music_and_audio" target="_blank">MUSIC_AND_AUDIO</a></td>
+                                        <td>Aplikasi tentang musik dan audio</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="{{baseurl}}list/top_free/news_and_magazine" target="_blank">NEWS_AND_MAGAZINE</a></td>
+                                        <td>Berita dan majalah digital</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="{{baseurl}}list/top_free/parenting" target="_blank">PARENTING</a></td>
+                                        <td>Aplikasi seputar parenting dan pola asuh</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="{{baseurl}}list/top_free/personalization" target="_blank">PERSONALIZATION</a></td>
+                                        <td>Aplikasi mengenai personalisasi</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="{{baseurl}}list/top_free/photography" target="_blank">PHOTOGRAPHY</a></td>
+                                        <td>Kumpulan aplikasi foto dan editing foto</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="{{baseurl}}list/top_free/productivity" target="_blank">PRODUCTIVITY</a></td>
+                                        <td>Aplikasi penunjang produktivitas</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="{{baseurl}}list/top_free/shopping" target="_blank">SHOPPING</a></td>
+                                        <td>Aplikasi belanja online</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="{{baseurl}}list/top_free/social" target="_blank">SOCIAL</a></td>
+                                        <td>Aplikasi penunjang kehidupan sosial digital</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="{{baseurl}}list/top_free/sports" target="_blank">SPORTS</a></td>
+                                        <td>Aplikasi seputar olahraga</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="{{baseurl}}list/top_free/tools" target="_blank">TOOLS</a></td>
+                                        <td>Kumpulan aplikasi tools</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="{{baseurl}}list/top_free/travel_and_local" target="_blank">TRAVEL_AND_LOCAL</a></td>
+                                        <td>Aplikasi seputar travel dan wisata lokal</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="{{baseurl}}list/top_free/video_players" target="_blank">VIDEO_PLAYERS</a></td>
+                                        <td>Kumpulan aplikasi pemutar video</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="{{baseurl}}list/top_free/weather" target="_blank">WEATHER</a></td>
+                                        <td>Kumpulan aplikasi cuaca</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="{{baseurl}}list/top_free/app_widgets" target="_blank">APP_WIDGETS</a></td>
+                                        <td>Kumpulan widget</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="{{baseurl}}list/top_free/game" target="_blank">GAME</a></td>
+                                        <td>Kumpulan aplikasi game</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="{{baseurl}}list/top_free/game_action" target="_blank">GAME_ACTION</a></td>
+                                        <td>Kumpulan aplikasi game action</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="{{baseurl}}list/top_free/game_adventure" target="_blank">GAME_ADVENTURE</a></td>
+                                        <td>Kumpulan aplikasi game petualangan</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="{{baseurl}}list/top_free/game_arcade" target="_blank">GAME_ARCADE</a></td>
+                                        <td>Kumpulan aplikasi game arcade</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="{{baseurl}}list/top_free/game_board" target="_blank">GAME_BOARD</a></td>
+                                        <td>Kumpulan aplikasi game papan</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="{{baseurl}}list/top_free/game_card" target="_blank">GAME_CARD</a></td>
+                                        <td>Kumpulan aplikasi game kartu</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="{{baseurl}}list/top_free/game_casino" target="_blank">GAME_CASINO</a></td>
+                                        <td>Kumpulan aplikasi game judi</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="{{baseurl}}list/top_free/game_casual" target="_blank">GAME_CASUAL</a></td>
+                                        <td>Kumpulan aplikasi game kasual</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="{{baseurl}}list/top_free/game_educational" target="_blank">GAME_EDUCATIONAL</a></td>
+                                        <td>Kumpulan aplikasi game edukatif</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="{{baseurl}}list/top_free/game_music" target="_blank">GAME_MUSIC</a></td>
+                                        <td>Kumpulan aplikasi game musik</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="{{baseurl}}list/top_free/game_puzzle" target="_blank">GAME_PUZZLE</a></td>
+                                        <td>Kumpulan aplikasi game puzzle</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="{{baseurl}}list/top_free/game_racing" target="_blank">GAME_RACING</a></td>
+                                        <td>Kumpulan aplikasi game racing</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="{{baseurl}}list/top_free/game_role_playing" target="_blank">GAME_ROLE_PLAYING</a></td>
+                                        <td>Kumpulan aplikasi game bermain peran</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="{{baseurl}}list/top_free/game_simulation" target="_blank">GAME_SIMULATION</a></td>
+                                        <td>Kumpulan aplikasi game simulasi</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="{{baseurl}}list/top_free/game_sports" target="_blank">GAME_SPORTS</a></td>
+                                        <td>Kumpulan aplikasi game olahraga</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="{{baseurl}}list/top_free/game_strategy" target="_blank">GAME_STRATEGY</a></td>
+                                        <td>Kumpulan aplikasi game strategi</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="{{baseurl}}list/top_free/game_trivia" target="_blank">GAME_TRIVIA</a></td>
+                                        <td>Kumpulan aplikasi game trivia</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="{{baseurl}}list/top_free/game_word" target="_blank">GAME_WORD</a></td>
+                                        <td>Kumpulan aplikasi game olah kata</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="{{baseurl}}list/top_free/family" target="_blank">FAMILY</a></td>
+                                        <td>Kumpulan aplikasi untuk keluarga</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="{{baseurl}}list/top_free/family_action" target="_blank">FAMILY_ACTION</a></td>
+                                        <td>Kumpulan aplikasi game action keluarga</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="{{baseurl}}list/top_free/family_braingames" target="_blank">FAMILY_BRAINGAMES</a></td>
+                                        <td>Kumpulan aplikasi game asah otak keluarga</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="{{baseurl}}list/top_free/family_create" target="_blank">FAMILY_CREATE</a></td>
+                                        <td>Kumpulan aplikasi untuk keluarga</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="{{baseurl}}list/top_free/family_education" target="_blank">FAMILY_EDUCATION</a></td>
+                                        <td>Kumpulan aplikasi untuk edukasi keluarga</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="{{baseurl}}list/top_free/family_musicvideo" target="_blank">FAMILY_MUSICVIDEO</a></td>
+                                        <td>Kumpulan aplikasi musik dan video untuk keluarga</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="{{baseurl}}list/top_free/family_pretend" target="_blank">FAMILY_PRETEND</a></td>
+                                        <td>Kumpulan aplikasi untuk keluarga</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default btn-block btn-lg" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">search</h3>
+        </div>
+        <div class="panel-body">
+            <section>
+                <p>Mengambil daftar aplikasi melalui pencarian kata kunci. Opsi pencarian:</p>
+                <ul>
+                    <li><p>term: kata kunci untuk menemukan aplikasi yang diinginkan</p></li>
+                    <li><p>lang (opsional, 'en' adalah nilai default): dua huruf yang merepresentasikan kode bahasa.</p></li>
+                    <li><p>country (opsional, 'us' adalah nilai default): dua huruf yang merepresentasikan kode negara. Diperlukan untuk mengambil data aplikasi yang hanya terbatas pada beberapa negara tertentu.</p></li>
+                    <li>
+                        <p>price (opsional, 'all' adalah nilai default): untuk memfilter pencarian apakah aplikasi tergolong berbayar atau tidak berbayar</p>
+                        <ul>
+                            <li>all: berbayar dan tidak berbayar</li>
+                            <li>free: menampilkan aplikasi tidak berbayar saja</li>
+                            <li>paid: menampilkan aplikasi berbayar saja</li>
+                        </ul>
+                    </li>
+                </ul>
+                <p>Contoh: </p>
+                <ul>
+                    <li><a href="{{baseurl}}search/gta%20san%20andreas" target="_blank">Mencari aplikasi dengan kata kunci "gta san andreas"</a></li>
+                    <li><a href="{{baseurl}}search/shooting%20games/en/us/free" target="_blank">Mencari aplikasi tidak berbayar dengan kata kunci "shooting games"</a></li>
+                </ul>
+                <p>URL Parameter</p>
+                <pre>GET: /search/:term/:lang/:country/:price/:num</pre>
+            </section>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+          <div class="panel-heading">
+                <h3 class="panel-title">developer</h3>
+          </div>
+          <div class="panel-body">
+                <section>
+                    <p>Mendapatkan daftar aplikasi berdasarkan nama developer. Opsi pencarian:</p>
+                    <ul>
+                        <li><p>devId: nama pengembang aplikasi</p></li>
+                        <li><p>lang (opsional, 'en' adalah nilai default): dua huruf yang merepresentasikan kode bahasa.</p></li>
+                        <li><p>country (opsional, 'us' adalah nilai default): dua huruf yang merepresentasikan kode negara. Diperlukan untuk mengambil data aplikasi yang hanya terbatas pada beberapa negara tertentu.</p></li>
+                        <li><p>num (optional, defaultnya adalah 60, maksimum 120): jumlah data aplikasi yang diambil.</p></li>
+                    </ul>
+                    <p>Contoh: </p>
+                    <ul>
+                        <li><a href="{{baseurl}}developer/Rockstar%20Games" target="_blank">Menampilkan aplikasi yang dibuat oleh "Rockstar Games"</a></li>
+                        <li><a href="{{baseurl}}developer/Rockstar%20Games/en/us/3" target="_blank">Menampilkan 3 pertama aplikasi yang dibuat oleh "Rockstar Games"</a></li>
+                    </ul>
+                    <p>URL Parameter</p>
+                    <pre>GET: /developer/:lang/:country/:num</pre>
+                </section>
+          </div>
+    </div>
+    
+    <div class="panel panel-default">
+          <div class="panel-heading">
+                <h3 class="panel-title">suggest</h3>
+          </div>
+          <div class="panel-body">
+                <section>
+                    <p>Mendapatkan 5 sugesti dari hasil pencarian kata kunci. Opsi pencarian:</p>
+                    <ul>
+                        <li><p>term: kata kunci untuk mendapatkan sugesti yang diharapkan</p></li>
+                    </ul>
+                    <p>Contoh: </p>
+                    <ul>
+                        <li><a href="{{baseurl}}suggest/soccer" target="_blank">Menampilkan sugesti aplikasi seputar "soccer"</a></li>
+                    </ul>
+                    <p>URL Parameter</p>
+                    <pre>GET: /suggest/:term</pre>
+                </section>
+          </div>
+    </div>
+
+    <div class="panel panel-default">
+          <div class="panel-heading">
+                <h3 class="panel-title">reviews</h3>
+          </div>
+          <div class="panel-body">
+                <section>
+                    <p>Mendapatkan data ulasan per aplikasi. Opsi pencarian:</p>
+                    <ul>
+                        <li><p>appId: ID aplikasi Google Play (parameter ?id= pada url).</p></li>
+                        <li><p>lang (opsional, 'en' adalah nilai default): dua huruf yang merepresentasikan kode bahasa.</p></li>
+                        <li><p>sort (optional, defaultnya adalah sort.NEWEST): cara review diurutkan. Nilai yang diterima adalah <a href="{{baseurl}}reviews/com.naver.linewebtoon/en/newest" target="_blank">sort.NEWEST</a>, <a href="{{baseurl}}reviews/com.naver.linewebtoon/en/rating" target="_blank">sort.RATING</a>, dan <a href="{{baseurl}}reviews/com.naver.linewebtoon/en/helpfulness" target="_blank">sort.HELPFULNESS</a></p></li>
+                        <li><p>page (optional, defaultnya adalah 0): jumlah halaman yang mengandung review. Setiap halaman mengandung maksimum 40 ulasan.</p></li>
+                    </ul>
+                    <p>Contoh: </p>
+                    <ul>
+                        <li><a href="{{baseurl}}developer/Rockstar%20Games" target="_blank">Menampilkan aplikasi yang dibuat oleh "Rockstar Games"</a></li>
+                        <li><a href="{{baseurl}}developer/Rockstar%20Games/en/us/3" target="_blank">Menampilkan 3 pertama aplikasi yang dibuat oleh "Rockstar Games"</a></li>
+                    </ul>
+                    <p>URL Parameter</p>
+                    <pre>GET: /reviews/:appId/:lang/:sort/:page</pre>
+                </section>
+          </div>
+    </div>
+    
+    <div class="panel panel-default">
+          <div class="panel-heading">
+                <h3 class="panel-title">similar</h3>
+          </div>
+          <div class="panel-body">
+                <section>
+                    <p>Mendapatkan data aplikasi terkait dari kata kunci yang diinput. Opsi pencarian:</p>
+                    <ul>
+                        <li><p>appId: ID aplikasi Google Play (parameter ?id= pada url).</p></li>
+                        <li><p>lang (opsional, 'en' adalah nilai default): dua huruf yang merepresentasikan kode bahasa.</p></li>
+                    </ul>
+                    <p>Contoh: </p>
+                    <ul>
+                        <li><a href="{{baseurl}}similar/com.naver.linewebtoon" target="_blank">Menampilkan aplikasi yang serupa dengan LINE Webtoon</a></li>
+                    </ul>
+                    <p>URL Parameter</p>
+                    <pre>GET: /similar/:appId/:lang</pre>
+                </section>
+          </div>
+    </div>
+
+    <div class="panel panel-default">
+          <div class="panel-heading">
+                <h3 class="panel-title">permission</h3>
+          </div>
+          <div class="panel-body">
+                <section>
+                    <p>Mendapatkan permission per aplikasi yang dispesifikan. Opsi pencarian:</p>
+                    <ul>
+                        <li><p>appId: ID aplikasi Google Play (parameter ?id= pada url).</p></li>
+                        <li><p>lang (opsional, 'en' adalah nilai default): dua huruf yang merepresentasikan kode bahasa.</p></li>
+                        <li><p>short (opsional, false adalah nilai default): jika bernilai true, maka yang muncul hanyalah permission name tanpa deskripsi.</p></li>
+                    </ul>
+                    <p>Contoh: </p>
+                    <ul>
+                        <li><a href="{{baseurl}}permission/com.facebook.katana" target="_blank">Menampilkan permission aplikasi Facebook</a></li>
+                        <li><a href="{{baseurl}}permission/com.facebook.katana/en/short" target="_blank">Menampilkan permission aplikasi Facebook (short)</a></li>
+                    </ul>
+                    <p>URL Parameter</p>
+                    <pre>GET: /permission/:appId/:lang/:short</pre>
+                </section>
+          </div>
+    </div>
+</div>
+
+<div class="footer">
+    <p class="text-center">Made with <span class="glyphicon glyphicon-heart"></span> by <a href="https://github.com/yabesWirawan/gooplayapi" target="_blank">@yabesWirawan</a></p>
+</div>
+
+{{!--Javascript--}}
+<!-- Place this tag in your head or just before your close body tag. -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>

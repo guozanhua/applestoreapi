@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+body{
+    font-family: 'Raleway',sans-serif;
+    padding-bottom: 100px;
+}
+
+.jumbotron.banner{
+    background: url('https://www.walldevil.com/wallpapers/a35/mac-desktop-somebody-wallpaper-there-likes-background-wallpapers-images.jpg') fixed center center;
+    color: #fff;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
